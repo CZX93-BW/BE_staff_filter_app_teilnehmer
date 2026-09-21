@@ -9,6 +9,9 @@ def employee_overview(request):
     context = {
         'employees': employees,
         'employees_over_3000': employees.filter(salary__gt=3000),
+                'employees_at_least_5000_count': employees.filter(
+            salary__gte=5000
+        ).count(),
     }
 
     return render(request, 'employee_list.html', context)

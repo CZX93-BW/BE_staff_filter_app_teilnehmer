@@ -51,7 +51,7 @@
       </tbody>
     </table>
 
-        <h3>2. Mitarbeiter mit mehr als 3000 € Monatsgehalt</h3>
+    <h3>2. Mitarbeiter mit mehr als 3000 € Monatsgehalt</h3>
 
     <ul>
       {% for employee in employees_over_3000 %}
@@ -60,6 +60,10 @@
       <li>Keine passenden Mitarbeiter gefunden.</li>
       {% endfor %}
     </ul>
+
+    <h3>3. Anzahl der Mitarbeiter mit mindestens 5000 € Monatsgehalt</h3>
+
+    <p>{{ employees_at_least_5000_count }}</p>
 
     {% endlanguage %}
   </body>
