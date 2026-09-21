@@ -1,3 +1,4 @@
+from django.db.models import Avg
 from django.shortcuts import render
 
 from .models import Employee
@@ -12,6 +13,11 @@ def employee_overview(request):
                 'employees_at_least_5000_count': employees.filter(
             salary__gte=5000
         ).count(),
+                'sales_average_salary': employees.filter(
+            department__name='Sales'
+        ).aggregate(
+            average_salary=Avg('salary')
+        )['average_salary'],
     }
 
     return render(request, 'employee_list.html', context)
