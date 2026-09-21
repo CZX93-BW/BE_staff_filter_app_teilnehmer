@@ -1,11 +1,13 @@
 from django.shortcuts import render
+
 from .models import Employee
-from django.db.models import Avg, Q
-from datetime import date
 
 
 def employee_overview(request):
+    employees = Employee.objects.select_related('department').order_by('name')
 
-    # Hier die entsprechenden Filter anlegen und die context-Variable definieren, um die Daten an das Template zu übergeben
+    context = {
+        'employees': employees,
+    }
 
-    return render(request, 'employee_list.html')
+    return render(request, 'employee_list.html', context)

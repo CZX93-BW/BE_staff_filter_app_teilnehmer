@@ -1,3 +1,4 @@
+{% load i18n %}
 <!DOCTYPE html>
 <html lang="de">
   <head>
@@ -14,6 +15,7 @@
       <li>Zeige eine Liste der Namen aller Mitarbeiter, die mehr als 3000 € im Monat verdienen.</li>
       <li>Wie hoch ist die Anzahl der Mitarbeiter, die 5000 € im Monat oder mehr verdienen?</li>
     </ol>
+
     <h3>Zusatzaufgaben:</h3>
     <ol start="4">
       <li>Wie hoch ist das Durchschnittsgehalt aller Mitarbeiter im Sales-Team? Zeige das Ergebnis auf zwei Nachkommastellen gerundet an.</li>
@@ -22,6 +24,33 @@
 
     <h2 style="color:red">Antworten:</h2>
 
-    <!-- Hier eure Antworten rendern -->
+    {% language "de" %}
+
+    <h3>1. Alle Mitarbeiter</h3>
+
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Abteilung</th>
+          <th scope="col">Monatsgehalt</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for employee in employees %}
+        <tr>
+          <td>{{ employee.name }}</td>
+          <td>{{ employee.department.name }}</td>
+          <td>{{ employee.salary|floatformat:2 }} €</td>
+        </tr>
+        {% empty %}
+        <tr>
+          <td colspan="3">Keine Mitarbeiter vorhanden.</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    {% endlanguage %}
   </body>
 </html>
