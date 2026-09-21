@@ -51,6 +51,16 @@
       </tbody>
     </table>
 
+        <h3>2. Mitarbeiter mit mehr als 3000 € Monatsgehalt</h3>
+
+    <ul>
+      {% for employee in employees_over_3000 %}
+      <li>{{ employee.name }}</li>
+      {% empty %}
+      <li>Keine passenden Mitarbeiter gefunden.</li>
+      {% endfor %}
+    </ul>
+
     {% endlanguage %}
   </body>
 </html>

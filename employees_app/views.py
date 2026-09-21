@@ -8,6 +8,7 @@ def employee_overview(request):
 
     context = {
         'employees': employees,
+        'employees_over_3000': employees.filter(salary__gt=3000),
     }
 
     return render(request, 'employee_list.html', context)
