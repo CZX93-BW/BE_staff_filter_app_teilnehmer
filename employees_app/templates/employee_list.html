@@ -73,6 +73,16 @@
     <p>Keine Mitarbeiter im Sales-Team vorhanden.</p>
     {% endif %}
 
+    <h3>5. Vor dem 1. Januar 2022 eingestellt, ohne HR</h3>
+
+    <ul>
+      {% for employee in employees_before_2022_without_hr %}
+      <li>{{ employee.name }}</li>
+      {% empty %}
+      <li>Keine passenden Mitarbeiter gefunden.</li>
+      {% endfor %}
+    </ul>
+
     {% endlanguage %}
   </body>
 </html>

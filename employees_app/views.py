@@ -1,3 +1,5 @@
+from datetime import date
+
 from django.db.models import Avg
 from django.shortcuts import render
 
@@ -18,6 +20,11 @@ def employee_overview(request):
         ).aggregate(
             average_salary=Avg('salary')
         )['average_salary'],
+                'employees_before_2022_without_hr': employees.filter(
+            hire_date__lt=date(2022, 1, 1)
+        ).exclude(
+            department__name='HR'
+        ),
     }
 
     return render(request, 'employee_list.html', context)
